@@ -1,39 +1,23 @@
-'use strict';
-
-// Створи клас Storage, який створюватиме об'єкти для управління складом товарів. Клас очікує лише один аргумент —
-// початковий масив товарів, який записується до створеного об'єкта в приватну властивість items.
-
-// Оголоси наступні методи класу:
-
-// getItems() — повертає масив поточних товарів у приватній властивості items.
-// addItem(newItem) — приймає новий товар newItem і додає його до масиву товарів у приватну властивість items
-// об'єкта.
-// removeItem(itemToRemove) — приймає рядок з назвою товару itemToRemove і видаляє його з масиву товарів у
-// приватній властивості items об'єкта.
-
-class Storage {
-  #items;
-
-  constructor(items){
-    this.#items = items;
+const images = [
+  {
+    url: 'https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    alt: 'White and Black Long Fur Cat',
+  },
+  {
+    url: 'https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    alt: 'Orange and White Koi Fish Near Yellow Koi Fish',
+  },
+  {
+    url: 'https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    alt: 'Group of Horses Running',
   }
+];
 
-  getItems(){
-    return this.#items;
-  }
+const list = document.querySelector('.gallery');
+console.log(list)
 
-  addItem(newItem){
-    this.#items.push(newItem)
-  }
+const itemGallery = images.map((images) =>
+`<li class="itemGallery"><img class="imageGallery" src = ${images.url}
+alt = ${images.alt} ></li>`).join("");
 
-  removeItem(itemToRemove){
-      this.#items.splice(this.#items.indexOf(itemToRemove), 1)
-  }
-}
-
-const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
-storage.addItem("Droid");
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
-storage.removeItem("Prolonger");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+list.insertAdjacentHTML("afterbegin", itemGallery);
